@@ -3,6 +3,10 @@ import { NavLink, Route } from 'react-router-dom';
 import PageTemplate from './ui/PageTemplate';
 import './styles.scss';
 
+//TODO
+// 1. Add filter on character page
+// 2. Fix code structure at episode page
+
 function App() {
   return (
     <div className='App'>
@@ -13,12 +17,12 @@ function App() {
           <NavLink to='/episode'>Episodes</NavLink>
         </nav>
       </header>
-        <Route path='/' exact>
-          <PageTemplate />
-        </Route>
-        <Route path='/episode' >
-          <PageTemplate />
-        </Route>
+      <Route path='/' exact>
+        <PageTemplate page='character' />
+      </Route>
+      <Route path='/episode'>
+
+      </Route>
     </div>
   );
 }

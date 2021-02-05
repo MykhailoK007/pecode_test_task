@@ -26,14 +26,12 @@ export const reducer = (state = initialState, action) => {
         pageCount: calculatedPageCount,
       };
     case SET_EPISODE_LIST:
-      debugger;
       return {
         ...state,
         dataList: [...action.data.results],
         pageCount: action.data.info.pages,
       };
     case SET_CURRENT_EPISODE:
-      debugger;
       return {
         ...state,
         currentCharacterData: {
@@ -43,14 +41,15 @@ export const reducer = (state = initialState, action) => {
         },
       };
     case SET_CURRENT_CHARACTER_DATA:
+      const { status, species, gender, origin, location } = action.data;
       return {
         ...state,
         currentCharacterData: {
-          status: action.status,
-          species: action.species,
-          gender: action.gender,
-          origin: action.origin,
-          location: action.location,
+          status: status,
+          species: species,
+          gender: gender,
+          origin: origin.name,
+          location: location.name,
         },
       };
     case SET_CURRENT_PAGE:
@@ -76,7 +75,6 @@ const setCharacterList = (data, page) => {
   };
 };
 const setEpisodeList = (data, page) => {
-  debugger;
   return {
     type: SET_EPISODE_LIST,
     data,
@@ -84,14 +82,9 @@ const setEpisodeList = (data, page) => {
   };
 };
 const setCurrentCharacterDate = data => {
-  const { status, species, gender, origin, location } = data;
   return {
     type: SET_CURRENT_CHARACTER_DATA,
-    status,
-    species,
-    gender,
-    origin: origin.name,
-    location: location.name,
+    data,
   };
 };
 const setCurrentEpisodeDate = data => {
@@ -112,6 +105,7 @@ export const setCurrentPage = page => {
 export const fetchCharactersList = (page = 1, pageName) => dispatch => {
   //Change count of items on page
   const dividePage = page / 2;
+
   getAPI
     .characters(Math.ceil(dividePage))
     .then(data => dispatch(setCharacterList(data, page)));
