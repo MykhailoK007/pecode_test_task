@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {
   fetchCharacterData,
   fetchCharactersList,
-  fetchEpisodeData,
+  fetchDataList,
   fetchEpisodesList,
 } from '../redux/reducer';
 import Pagination from '@material-ui/lab/Pagination';
@@ -12,24 +12,16 @@ import { ListWrapper } from './ListWrapper';
 //Distinguishes pages and return data for that page
 const PageTemplate = props => {
   const [page, setPage] = useState(1);
-  useEffect(() => {
-    getDataList();
-  }, [1]);
-  const getDataList =
-    props.page === 'character'
-      ? props.fetchCharactersList
-      : props.fetchEpisodesList;
-  const getItemData =
-    props.page === 'character'
-      ? props.fetchCharacterData
-      : props.fetchEpisodeData;
 
-  const changePage = (e, page) => {
-    debugger;
+  useEffect(() => {
+    props.fetchDataList(props.page);
+  },[props.page]);
+
+  const changePage = (e, currentPage) => {
     new Promise(res => {
-      res(setPage(page));
+      res(setPage(currentPage));
     }).then(() => {
-      getDataList(page);
+      props.fetchDataList(props.page, currentPage);
     });
   };
   return (
@@ -37,8 +29,9 @@ const PageTemplate = props => {
       <ListWrapper
         page={props.page}
         dataList={props.dataList}
-        getItemData={getItemData}
+        getItemData={props.fetchCharacterData}
         characterData={props.currentCharacterData}
+        fetchDataList = {props.fetchDataList}
       />
       <Pagination
         count={props.pageCount}
@@ -49,7 +42,6 @@ const PageTemplate = props => {
     </>
   );
 };
-
 const mapStateToProps = state => {
   return {
     dataList: state.dataList,
@@ -62,5 +54,5 @@ export default connect(mapStateToProps, {
   fetchCharactersList,
   fetchEpisodesList,
   fetchCharacterData,
-  fetchEpisodeData,
+  fetchDataList,
 })(PageTemplate);

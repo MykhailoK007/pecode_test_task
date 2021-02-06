@@ -6,6 +6,7 @@ const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_CURRENT_EPISODE = 'SET_CURRENT_EPISODE';
 const SET_EPISODE_LIST = 'SET_EPISODE_LIST';
 const UPDATE_CHARACTERS_LIST = 'UPDATE_CHARACTERS_LIST';
+const SET_LOCATION_LIST = 'SET_LOCATION_LIST';
 const initialState = {
   dataList: [],
   currentCharacterData: {},
@@ -28,8 +29,26 @@ export const reducer = (state = initialState, action) => {
     case SET_EPISODE_LIST:
       return {
         ...state,
-        dataList: [...action.data.results],
+        dataList: [
+          ...action.data.results.map(el => ({
+            name: el.name,
+            episode: el.episode,
+            air_date: el.air_date,
+          })),
+        ],
         pageCount: action.data.info.pages,
+      };
+    case SET_LOCATION_LIST:
+      return {
+        ...state,
+        dataList: [
+          ...action.data.results.map(el => ({
+            name: el.name,
+            dimension: el.dimension,
+            type: el.type,
+          })),
+        ],
+        pageCount: action.data.info.pages
       };
     case SET_CURRENT_EPISODE:
       return {
@@ -74,11 +93,10 @@ const setCharacterList = (data, page) => {
     page,
   };
 };
-const setEpisodeList = (data, page) => {
+const setEpisodeList = data => {
   return {
     type: SET_EPISODE_LIST,
     data,
-    page,
   };
 };
 const setCurrentCharacterDate = data => {
@@ -87,27 +105,18 @@ const setCurrentCharacterDate = data => {
     data,
   };
 };
-const setCurrentEpisodeDate = data => {
-  const { air_date, episode, characters } = data;
+const setLocationList = data => {
   return {
-    type: SET_CURRENT_EPISODE,
-    air_date,
-    episode,
-    characters,
+    type: SET_LOCATION_LIST,
+    data,
   };
 };
-export const setCurrentPage = page => {
-  return {
-    type: SET_CURRENT_PAGE,
-    page,
-  };
-};
-export const fetchCharactersList = (page = 1, pageName) => dispatch => {
-  //Change count of items on page
-  const dividePage = page / 2;
 
+export const fetchCharactersList = (page = 1) => dispatch => {
+  //Change count of items on page
+  const dividePage = Math.ceil(page / 2);
   getAPI
-    .characters(Math.ceil(dividePage))
+    .characters(dividePage)
     .then(data => dispatch(setCharacterList(data, page)));
 };
 export const fetchCharacterData = id => dispatch => {
@@ -118,6 +127,23 @@ export const fetchCharacterData = id => dispatch => {
 export const fetchEpisodesList = (page = 1) => dispatch => {
   getAPI.episodes(page).then(data => dispatch(setEpisodeList(data)));
 };
-export const fetchEpisodeData = id => dispatch => {
-  getAPI.episodeData(id).then(data => dispatch(setCurrentEpisodeDate(data)));
+
+export const fetchDataList = (pageName, page = 1) => dispatch => {
+  dispatch({type:UPDATE_CHARACTERS_LIST})
+  switch (pageName) {
+    case 'character':
+      const dividePage = Math.ceil(page / 2);
+      getAPI
+        .characters(dividePage)
+        .then(data => dispatch(setCharacterList(data, page)));
+      return true;
+    case 'episode':
+      getAPI.episodes(page).then(data => dispatch(setEpisodeList(data)));
+      return true;
+    case 'location':
+      getAPI
+        .dataList(page, pageName)
+        .then(data => dispatch(setLocationList(data)));
+      return true;
+  }
 };

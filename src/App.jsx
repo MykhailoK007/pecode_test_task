@@ -2,10 +2,9 @@ import React from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import PageTemplate from './ui/PageTemplate';
 import './styles.scss';
+import {WatchList} from "./routes/watch-list-page/WatchList";
 
-//TODO
-// 1. Add filter on character page
-// 2. Fix code structure at episode page
+
 
 function App() {
   return (
@@ -15,13 +14,21 @@ function App() {
         <nav>
           <NavLink to='/'>Character</NavLink>
           <NavLink to='/episode'>Episodes</NavLink>
+          <NavLink to='/location'>Location</NavLink>
+          <NavLink to='/watchList'>Watch list</NavLink>
         </nav>
       </header>
       <Route path='/' exact>
         <PageTemplate page='character' />
       </Route>
-      <Route path='/episode'>
-
+      <Route path='/episode' exact>
+        <PageTemplate page='episode' />
+      </Route>
+      <Route path='/location' exact>
+        <PageTemplate page='location' />
+      </Route>
+      <Route path='/watchList'>
+        <WatchList/>
       </Route>
     </div>
   );

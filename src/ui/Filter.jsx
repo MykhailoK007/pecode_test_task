@@ -1,34 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import { FormControl } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
+
+const useStyles = makeStyles(theme => ({
+  formControl: {
+    width: '100%',
+    textAlign: 'center',
+    justifyContent: 'center',
+    marginTop: '30px',
+  },
+  label: {
+    textAlign: 'center',
+    width: '100%',
+  },
+  select: {
+    margin: '0 auto',
+    width: '30%',
+    color: 'grey',
+    background: 'none',
+  },
+}));
 
 export const Filter = props => {
-  const capitalizedWord = word => word.charAt(0).toUpperCase() + word.slice(1);
+  const classes = useStyles();
+  const [filter, setFilter] = useState('none');
+  const handleChange = e => {
+    setFilter(e.target.value);
+  };
   return (
-    <div>
-      <select
-        onChange={e => {
-          props.handleChange({
-            name: e.target.options[e.target.selectedIndex].parentNode.label,
-            value: e.target.value,
-          });
-        }}>
-        {props.optGrups.map((group, index) => {
-          console.log(group.name);
+    <FormControl className={classes.formControl}>
+      <InputLabel id='filterBy' className={classes.label}>
+        Filter by
+      </InputLabel>
+      <Select
+        className={classes.select}
+        labelId='filterBy'
+        onChange={handleChange}
+        value={filter}>
+        <MenuItem value={filter}>none</MenuItem>
+        {props.fields.map((field, index) => {
           return (
-            <optgroup
-              label={capitalizedWord(group.name)}
-              value={group.name}
-              key={index}>
-              {group.value.map((option, index) => {
-                return (
-                  <option value={option} name={group.name} key={index}>
-                    {capitalizedWord(option)}
-                  </option>
-                );
-              })}
-            </optgroup>
+            <MenuItem value={field} key={index}>
+              {field}
+            </MenuItem>
           );
         })}
-      </select>
-    </div>
+      </Select>
+    </FormControl>
   );
 };

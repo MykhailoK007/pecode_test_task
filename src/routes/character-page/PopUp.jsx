@@ -7,7 +7,7 @@ export const PopUp = props => {
         <img src={props.image} alt='' />
         <div>
           {Object.entries(props.characterData).map(element => {
-            return <div>{`${element[0]}:${element[1]}`}</div>;
+            return <div key={element}>{`${element[0]}: ${element[1]}`}</div>;
           })}
         </div>
       </div>

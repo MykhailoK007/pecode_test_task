@@ -1,4 +1,6 @@
 @import "src/routes/character-page/styles";
+@import "src/routes/episode-page/styles";
+@import "src/routes/watch-list-page/styles";
 *{
     margin: 0;
     padding: 0;
@@ -36,6 +38,10 @@ nav *{
 nav *:hover{
     color: rgb(29,175,179);
 }
-.characterWrapper{
-
+.filterWrapper{
+    margin-top:30px ;
+    text-align: center;
+}
+.filter{
+    width: 30%;
 }
