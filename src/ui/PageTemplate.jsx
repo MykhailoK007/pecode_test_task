@@ -8,6 +8,7 @@ import {
 } from '../redux/reducer';
 import Pagination from '@material-ui/lab/Pagination';
 import { ListWrapper } from './ListWrapper';
+import {promiseTemplate} from "./functionalTemplates";
 
 //Distinguishes pages and return data for that page
 const PageTemplate = props => {
@@ -18,11 +19,7 @@ const PageTemplate = props => {
   },[props.page]);
 
   const changePage = (e, currentPage) => {
-    new Promise(res => {
-      res(setPage(currentPage));
-    }).then(() => {
-      props.fetchDataList(props.page, currentPage);
-    });
+    promiseTemplate(setPage.bind(null, currentPage), props.fetchDataList.bind(null, props.page, currentPage));
   };
   return (
     <>

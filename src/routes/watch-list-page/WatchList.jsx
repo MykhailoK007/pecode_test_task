@@ -4,13 +4,16 @@ import React, {useEffect, useRef, useState} from "react";
 export  const WatchList = props => {
   const [list, setList] = useState([]);
   const input = useRef(null);
+
   useEffect(() => {
     let getList = JSON.parse(localStorage.getItem('list'))||[];
     setList(getList);
   },[]);
+
   useEffect(() => {
     localStorage.setItem('list',JSON.stringify(list));
   },[list])
+
   const addEpisodeToList = () => {
     const newItem = {
       id:input.current.value + list.length,

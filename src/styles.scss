@@ -1,5 +1,4 @@
 @import "src/routes/character-page/styles";
-@import "src/routes/episode-page/styles";
 @import "src/routes/watch-list-page/styles";
 *{
     margin: 0;
@@ -44,4 +43,18 @@ nav *:hover{
 }
 .filter{
     width: 30%;
+}
+.tableWrapper{
+    width: 60%;
+    margin: 50px auto;
+    text-align: center;
+}
+table{
+    margin: 0 auto;
+}
+table,tr, td,th{
+    border: 1px solid black;
+}
+td,th{
+    width: 200px;
 }

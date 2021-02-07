@@ -1,12 +1,11 @@
 import React, { useRef } from 'react';
 import { PopUp } from './PopUp';
+import {promiseTemplate} from "../../ui/functionalTemplates";
 
 export const Character = props => {
   let input = useRef(null);
   const handleClick = () => {
-    new Promise(res => res(props.getItemInfo(props.id))).then(
-      () => (input.current.checked = !input.current.checked)
-    );
+    promiseTemplate(props.getItemInfo.bind(null, props.id), () => input.current.checked = !input.current.checked);
   };
 
   return (
