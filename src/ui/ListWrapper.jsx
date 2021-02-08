@@ -30,7 +30,6 @@ export const ListWrapper = props => {
           page={props.page}
         />
       )}
-
     </>
   );
 };

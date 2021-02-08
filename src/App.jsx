@@ -2,11 +2,9 @@ import React from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import PageTemplate from './ui/PageTemplate';
 import './styles.scss';
-import {WatchList} from "./routes/watch-list-page/WatchList";
+import { WatchList } from './routes/watch-list-page/WatchList';
 
-
-
-function App() {
+export const App = () => {
   return (
     <div className='App'>
       <header>
@@ -28,10 +26,8 @@ function App() {
         <PageTemplate page='location' />
       </Route>
       <Route path='/watchList'>
-        <WatchList/>
+        <WatchList />
       </Route>
     </div>
   );
-}
-
-export default App;
+};
