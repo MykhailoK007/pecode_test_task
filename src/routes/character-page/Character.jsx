@@ -11,12 +11,14 @@ export const Character = props => {
     );
   };
 
+  const { image, name, current } = props;
+
   return (
     <div className={'characterWrapper'} onClick={handleClick}>
       <input type='radio' name='character' ref={input} hidden />
-      <img src={props.image} alt={props.name} />
-      <div>{props.name}</div>
-      {input.current && input.current.checked && (
+      <img src={image} alt={name} />
+      <div>{{ name }}</div>
+      {current?.checked && (
         <PopUp characterData={props.characterData} image={props.image} />
       )}
     </div>

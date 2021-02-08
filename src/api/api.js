@@ -1,6 +1,7 @@
 const characterURL = 'https://rickandmortyapi.com/api/character';
 const episodeURL = 'https://rickandmortyapi.com/api/episode';
 const baseUrl = 'https://rickandmortyapi.com/api/';
+
 export const getAPI = {
   characters: page => {
     return fetch(`${characterURL}/?page=${page}`).then(result => result.json());
@@ -20,7 +21,6 @@ export const getAPI = {
     return fetch(`${episodeURL}/${id}`).then(result => result.json());
   },
   dataList: (page, pageName) => {
-
     return fetch(`${baseUrl + pageName}/?page=${page}`).then(result =>
       result.json()
     );
