@@ -1,11 +1,11 @@
-.characterList{
+.characterList {
   width: 60%;
   display: flex;
   margin: 50px auto;
   flex-flow: row wrap;
   justify-content: space-between;
 }
-.characterWrapper{
+.characterWrapper {
   width: 30%;
   background: #e6eaff;
   border-radius: 10px;
@@ -13,17 +13,17 @@
   margin-bottom: 50px;
   text-align: center;
   justify-content: center;
-  img{
+  img {
     width: 80%;
     margin-bottom: 5px;
   }
 }
 
-.characterWrapper:hover{
-  border:2px solid dodgerblue;
+.characterWrapper:hover {
+  border: 2px solid dodgerblue;
 }
 
-.additionalInfoWrapper{
+.additionalInfoWrapper {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -32,13 +32,13 @@
   top: 0;
   left: 0;
 }
-.additionalInfo{
+.additionalInfo {
   position: absolute;
   display: flex;
   width: 30%;
   height: 400px;
-  top:50% ;
-  left: 50% ;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   flex-flow: column;
   align-items: center;
@@ -46,23 +46,23 @@
   border-radius: 20px;
   background: #e6eaff;
   padding: 1%;
-  img{
+  img {
     max-width: 300px;
     width: 50%;
   }
-  div{
+  div {
     margin-bottom: 5px;
   }
 }
-.pagination{
+.pagination {
   width: 80%;
   margin: 30px auto;
 
   display: flex;
   justify-content: center;
-  border:none;
-
+  border: none;
 }
-table, td{
+table,
+td {
   border-collapse: collapse;
 }

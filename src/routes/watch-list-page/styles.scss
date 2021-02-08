@@ -1,32 +1,32 @@
-.inputWrapper{
+.inputWrapper {
   width: 40%;
   margin: 50px auto;
 }
-.listWrapper{
+.listWrapper {
   width: 60%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
-.itemWrapper{
+.itemWrapper {
   width: 60%;
   margin: 10px auto;
   border-bottom: 1px solid grey;
 }
-.removeButton{
+.removeButton {
   width: 30px;
   background: none;
   border: none;
   float: right;
 }
-.removeButton:hover{
+.removeButton:hover {
   color: red;
 }
 
-.item{
+.item {
   margin-left: 10px;
 }
-.emptyList{
+.emptyList {
   text-align: center;
   margin: 0 auto;
   font-size: 30px;

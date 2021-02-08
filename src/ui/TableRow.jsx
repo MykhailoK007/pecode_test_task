@@ -4,7 +4,7 @@ export const TableRow = props => {
   return (
     <tr>
       {props.data.map((el, i) => (
-        <td >{el}</td>
+        <td>{el}</td>
       ))}
     </tr>
   );
