@@ -12,7 +12,6 @@ export const App = () => {
   return (
     <div className='App'>
       <header>
-
         <div className='logo'>Rick & Morty</div>
         <nav>
           <NavLink to='/'>Character</NavLink>

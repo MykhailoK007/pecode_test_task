@@ -76,11 +76,6 @@ export const reducer = (state = initialState, action) => {
         ...state,
         currentPage: action.page,
       };
-    case UPDATE_CHARACTERS_LIST:
-      return {
-        ...state,
-        dataList: [],
-      };
     default:
       return state;
   }
@@ -112,21 +107,12 @@ const setLocationList = data => {
   };
 };
 
-export const fetchCharactersList = (page = 1) => dispatch => {
-  //Change count of items on page
-  const dividePage = Math.ceil(page / 2);
-  getAPI
-    .characters(dividePage)
-    .then(data => dispatch(setCharacterList(data, page)));
-};
 export const fetchCharacterData = id => dispatch => {
   getAPI
     .characterData(id)
     .then(data => dispatch(setCurrentCharacterDate(data)));
 };
-export const fetchEpisodesList = (page = 1) => dispatch => {
-  getAPI.episodes(page).then(data => dispatch(setEpisodeList(data)));
-};
+
 
 export const fetchDataList = (pageName, page = 1) => dispatch => {
   dispatch({type:UPDATE_CHARACTERS_LIST})
@@ -134,11 +120,11 @@ export const fetchDataList = (pageName, page = 1) => dispatch => {
     case 'character':
       const dividePage = Math.ceil(page / 2);
       getAPI
-        .characters(dividePage)
+        .dataList(dividePage, pageName)
         .then(data => dispatch(setCharacterList(data, page)));
       return true;
     case 'episode':
-      getAPI.episodes(page).then(data => dispatch(setEpisodeList(data)));
+      getAPI.dataList(page, pageName).then(data => dispatch(setEpisodeList(data)));
       return true;
     case 'location':
       getAPI

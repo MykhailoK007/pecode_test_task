@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import {
-  fetchCharacterData,
-  fetchCharactersList,
-  fetchDataList,
-  fetchEpisodesList,
-} from '../redux/reducer';
+import { fetchCharacterData, fetchDataList } from '../redux/reducer';
 import Pagination from '@material-ui/lab/Pagination';
 import { ListWrapper } from './ListWrapper';
 import { promiseTemplate } from './functionalTemplates';
@@ -51,8 +46,6 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  fetchCharactersList,
-  fetchEpisodesList,
   fetchCharacterData,
   fetchDataList,
 })(PageTemplate);
