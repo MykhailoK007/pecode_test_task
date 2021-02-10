@@ -19,8 +19,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
     "format": "prettier --write \"**/*.(js|jsx|json|)\"",
-    "build": "webpack ",
-    "react": "react-scripts start"
+    "build": "webpack "
   },
   "browserslist": {
     "production": [

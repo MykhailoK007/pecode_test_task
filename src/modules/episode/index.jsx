@@ -1,6 +1,5 @@
-import React from "react";
-
+import React from 'react';
 
 export const Episodes = props => {
-  return <div>Episodes page</div>
-}
+  return <div>Episodes page</div>;
+};

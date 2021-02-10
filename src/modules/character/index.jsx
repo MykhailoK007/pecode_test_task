@@ -1,6 +1,5 @@
-import React from "react";
-
+import React from 'react';
 
 export const Characters = props => {
-  return <div>Characters page</div>
-}
+  return <div>Characters page</div>;
+};

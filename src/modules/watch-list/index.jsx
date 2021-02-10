@@ -1,5 +1,5 @@
-import React from "react";
+import React from 'react';
 
 export const WatchList = props => {
-  return <div>My watch list page</div>
-}
+  return <div>My watch list page</div>;
+};

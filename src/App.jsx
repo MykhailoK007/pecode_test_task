@@ -1,14 +1,11 @@
 import React from 'react';
 import { NavLink, Route } from 'react-router-dom';
-import PageTemplate from './ui/PageTemplate';
+import { PageTemplate } from './ui/PageTemplate';
 import './styles.scss';
 import { WatchList } from './routes/watch-list-page/WatchList';
+import CharacterContainer from './routes/character-page/CharacterContainer';
 
 export const App = () => {
-  // TODO create router file
-  //  1. add router for each page
-  //  2. created Nav component
-  //  3. for each nav component -> move to modules
   return (
     <div className='App'>
       <header>
@@ -21,13 +18,16 @@ export const App = () => {
         </nav>
       </header>
       <Route path='/' exact>
-        <PageTemplate page='character' />
+        <CharacterContainer />
       </Route>
+      {
+        //Not working yet
+      }
       <Route path='/episode' exact>
-        <PageTemplate page='episode' />
+        {/*<PageTemplate page='episode' />*/}
       </Route>
       <Route path='/location' exact>
-        <PageTemplate page='location' />
+        {/*<PageTemplate page='location' />*/}
       </Route>
       <Route path='/watchList'>
         <WatchList />

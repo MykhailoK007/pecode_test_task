@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles.scss';
 import { TableTemplate } from './TableTemplate';
-import { CharacterContainer } from '../routes/character-page/CharacterContainer';
+import CharacterContainer from '../routes/character-page/CharacterContainer';
 
 export const ListWrapper = props => {
   const getItemInfo = id => {
